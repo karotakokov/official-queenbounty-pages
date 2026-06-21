@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赏金女王 · 站点介绍与知识库</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f0f2f5;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+    /* 深色头图 — 强调信息层次 */
+    .hero {
+      background: linear-gradient(145deg, #0b132b 0%, #1c2541 70%, #203c5a 100%);
+      color: #e2e8f0;
+      padding: 4rem 1.5rem 3.2rem;
+      text-align: center;
+      box-shadow: inset 0 -3px 10px rgba(0,0,0,0.3);
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      color: #f8fafc;
+    }
+    .hero .sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto;
+      border-top: 1px solid #3e5a7b;
+      padding-top: 1.2rem;
+      opacity: 0.9;
+    }
+    /* 主内容容器 — 浅色正文区 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    /* 卡片式目录布局 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s, box-shadow 0.2s;
+      border: 1px solid #e9edf2;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(0, 40, 80, 0.08);
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: #0b2b44;
+      border-left: 5px solid #c9781a;
+      padding-left: 0.9rem;
+      font-weight: 600;
+    }
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #334155;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .card li {
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #dee4ed;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .card li::before {
+      content: "▹";
+      color: #c9781a;
+      font-weight: bold;
+    }
+    /* 提示区 & 相关信息区 */
+    .info-block {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      border-left: 6px solid #c9781a;
+    }
+    .info-block h2 {
+      font-size: 1.4rem;
+      color: #0b2b44;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .info-block h2::before {
+      content: "ⓘ";
+      font-weight: 300;
+      color: #c9781a;
+      font-size: 1.5rem;
+    }
+    .info-block p {
+      max-width: 800px;
+    }
+    .note-box {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      margin-top: 1.5rem;
+      border: 1px dashed #cbd5e1;
+      color: #1e293b;
+      font-size: 0.95rem;
+    }
+    .note-box strong {
+      color: #c9781a;
+    }
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e9edf2;
+    }
+    .faq-mini h2 {
+      font-size: 1.3rem;
+      color: #0b2b44;
+      margin-bottom: 1.2rem;
+    }
+    .faq-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eef1f6;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-weight: 600;
+      color: #1a3a5a;
+      margin-bottom: 0.15rem;
+    }
+    .faq-a {
+      color: #475569;
+      font-size: 0.92rem;
+    }
+    /* 链接强调色 */
+    a {
+      color: #c55a11;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.1s, color 0.2s;
+    }
+    a:hover {
+      color: #9a4308;
+      border-bottom: 1px solid #c55a11;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 3.5rem;
+      padding: 1rem 0 0.5rem;
+      border-top: 1px solid #dce1e9;
+      font-size: 0.85rem;
+      color: #5d6f88;
+    }
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .container { padding: 1.8rem 1rem 3rem; }
+      .card { padding: 1.5rem 1.2rem; }
+      .info-block { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>赏金女王 · 站点知识库</h1>
+    <div class="sub">
+      信息入口 · 可信说明 · 场景梳理<br>
+      快速了解平台定位与使用前提
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 目录感卡片区：介绍 + 特点 + 场景 -->
+    <div class="grid-cards">
+
+      <section class="card">
+        <h3>站点介绍</h3>
+        <p><a href="https://official-queenbounty.com">赏金女王</a> 是一个以任务赏金模式为核心的互动平台，用户可通过完成指定内容挑战获取积分或奖励。本站点提供官方信息索引、规则说明及常见疑问汇总，帮助新用户快速建立认知框架。</p>
+        <p style="margin-top: 0.8rem;">站内所有描述均基于公开信息与用户协议整理，不涉及财务建议或收益承诺。</p>
+      </section>
+
+      <section class="card">
+        <h3>核心特点</h3>
+        <ul>
+          <li>任务体系透明：每项赏金均有明确条件与结算标准</li>
+          <li>多场景覆盖：从内容互动到创意投稿，门槛分级清晰</li>
+          <li>用户自主管理：可随时查看进度、历史记录与奖励明细</li>
+          <li>持续迭代：功能与规则依据反馈保持更新</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h3>适用场景</h3>
+        <ul>
+          <li>希望系统了解平台玩法的新参与者</li>
+          <li>需要快速检索任务分类与奖励逻辑的活跃用户</li>
+          <li>对平台信誉、数据归属存疑的信息核实者</li>
+          <li>内容创作者寻找规范化的互动出口</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- 说明区 + 提示区 -->
+    <div class="info-block">
+      <h2>可信说明</h2>
+      <p>本页面作为非官方知识索引，素材取自 <a href="https://official-queenbounty.com">赏金女王</a> 平台已公示的条款、常见问答及界面描述。所有引用均标注来源，不篡改原始含义。我们建议参与者在进行任何操作前，先完整阅读平台官方协议，并以实际页面展示为准。</p>
+      <div class="note-box">
+        <strong>📌 提示：</strong> 平台奖励内容可能因地区、活动周期或版本调整发生变化。本知识库会定期复核关键信息，但不保证实时同步。如有出入，请直接参考站内最新公告。
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h2>常见疑问摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">Q：赏金任务是否都需要绑定个人信息？</div>
+        <div class="faq-a">依据任务类型不同，基础任务通常无需实名；涉及实物或高额奖励的环节，可能需按平台指引完成验证。具体以任务页面标注为准。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：奖励发放周期大概是多久？</div>
+        <div class="faq-a">多数数字奖励在任务审核通过后 24–72 小时内到账，实物或特殊奖励则依据活动规则另行公示。可在个人中心查看当前进度。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：同一个账号可以同时参加多个赏金吗？</div>
+        <div class="faq-a">可以，只要满足每个任务的单独资格要求，且不同任务间没有明确冲突限制。建议同时关注任务截止时间，合理分配精力。</div>
+      </div>
+      <div style="margin-top: 1.2rem; font-size: 0.9rem; color: #4b5b73;">
+        💡 更多细节可直接访问 <a href="https://official-queenbounty.com">赏金女王</a> 并查阅帮助中心。
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+      知识库入口 · 仅供信息参考 · 操作前请以平台实际规则为准
+    </div>
+
+  </main>
+</body>
+</html>
